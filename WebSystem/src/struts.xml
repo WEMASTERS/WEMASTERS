@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<constant name="struts.objectFactory" value="spring" />
+	<include file="struts-default.xml"></include>
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.custom.i18n.resources" value="applicationResource" />
+	<package name="wemasters_websystem" extends="struts-default">
+		<action name="signUpByAccountWithEmailAddress" class="signUpAction"
+			method="signUpByAccountWithEmailAddress">
+			<result name="success" type="chain">getUserByAccount</result>
+			<result name="input">/signUpByAccountWithEmail.jsp</result>
+		</action>
+		<action name="signUpByAccountWithMobilePhoneNumber" class="signUpAction"
+			method="signUpByAccountWithMobilePhoneNumber">
+			<result name="success" type="chain">getUserByAccount</result>
+			<result name="input">/signUpByAccountWithMobilePhone.jsp</result>
+		</action>
+		<action name="loginByAccount" class="loginAction" method="loginByAccount">
+			<result name="success" type="chain">getUserByAccount</result>
+			<result name="input">/index.jsp</result>
+		</action>
+		<action name="getUserByAccount" class="userAction" method="getUserByAccount">
+			<result name="success">/main.jsp</result>
+		</action>
+	</package>
+	<package name="wemasters_websystem_json" extends="json-default">
+		<action name="checkEmailIsOccupied" class="checkAccountIsOccupiedAction"
+			method="checkEmailIsOccupied">
+			<result type="json" />
+		</action>
+		<action name="checkMobilePhoneIsOccupied" class="checkAccountIsOccupiedAction"
+			method="checkMobilePhoneIsOccupied">
+			<result type="json" />
+		</action>
+	</package>
+</struts>

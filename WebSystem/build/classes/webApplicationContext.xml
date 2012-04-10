@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<import resource="applicationContext.xml" />
+
+	<!-- Action -->
+	<bean id="signUpAction" class="cn.wemasters.websystem.action.SignUpAction"
+		autowire="byName" />
+	<bean id="loginAction" class="cn.wemasters.websystem.action.LoginAction"
+		autowire="byName" />
+	<bean id="userAction" class="cn.wemasters.websystem.action.UserAction"
+		autowire="byName" />
+	<bean id="checkAccountIsOccupiedAction"
+		class="cn.wemasters.websystem.ajax.action.CheckAccountIsOccupiedAction" autowire="byName"/>
+		
+</beans>
