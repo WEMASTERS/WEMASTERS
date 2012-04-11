@@ -12,21 +12,21 @@ public class AccountRepositoryImpl extends BaseRepositoryImpl<Account>
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Account getAccountIdPasswordByEmailAddress(String emailAddress) {
+	public Account getAccountIdEncryptedPasswordByEmailAddress(String emailAddress) {
 		String hql = "select id, encryptedPassword from Account where emailAddress = ?";
 		Query query = getHibernateSession().createQuery(hql);
 		query.setParameter(0, emailAddress);
-		return generateIdPassword(query.list());
+		return generateAccountIdPassword(query.list());
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Account getAccountIdPasswordByMobilePhoneNumber(
+	public Account getAccountIdEncryptedPasswordByMobilePhoneNumber(
 			String mobilePhoneNumber) {
 		String hql = "select id, encryptedPassword from Account where mobilePhoneNumber = ?";
 		Query query = getHibernateSession().createQuery(hql);
 		query.setParameter(0, mobilePhoneNumber);
-		return generateIdPassword(query.list());
+		return generateAccountIdPassword(query.list());
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class AccountRepositoryImpl extends BaseRepositoryImpl<Account>
 		return ((Long) query.uniqueResult()).intValue();
 	}
 
-	private Account generateIdPassword(List<Object[]> results) {
+	private Account generateAccountIdPassword(List<Object[]> results) {
 		if (results != null && results.size() == 1) {
 			Account account = new Account();
 			account.setId((Long) results.get(0)[0]);
@@ -54,6 +54,12 @@ public class AccountRepositoryImpl extends BaseRepositoryImpl<Account>
 		} else {
 			return null;
 		}
+	}
+
+	@Override
+	public void updateEncryptedPassword(Long id, String encryptedPassword) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

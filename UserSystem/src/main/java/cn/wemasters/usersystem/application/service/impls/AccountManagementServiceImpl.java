@@ -47,15 +47,15 @@ public class AccountManagementServiceImpl implements AccountManagementService {
 
 	@Override
 	public ResultMsg loginByAccount(LoginForm loginForm) {
-//		try {
+		try {
 			Account account = null;
 			if (StringUtils.isEmailAddress(loginForm.getUsername())) {
 				account = accountRepository
-						.getAccountIdPasswordByEmailAddress(loginForm
+						.getAccountIdEncryptedPasswordByEmailAddress(loginForm
 								.getUsername());
 			} else if (StringUtils.isMobilePhoneNumber(loginForm.getUsername())) {
 				account = accountRepository
-						.getAccountIdPasswordByMobilePhoneNumber(loginForm
+						.getAccountIdEncryptedPasswordByMobilePhoneNumber(loginForm
 								.getUsername());
 			}
 			if (account != null) {
@@ -65,9 +65,9 @@ public class AccountManagementServiceImpl implements AccountManagementService {
 			}
 			return ResultMsgUtils
 					.createResultMsg(ReturnCode.FORBIDDEN);
-//		} catch (Exception e) {
-//			return ResultMsgUtils.createResultMsg(ReturnCode.INTERNAL_SERVER_ERROR);
-//		}
+		} catch (Exception e) {
+			return ResultMsgUtils.createResultMsg(ReturnCode.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 }
