@@ -12,21 +12,22 @@
 
 	<s:form name="signUpForm" id="signUpForm"
 		action="signUpByAccountWithEmailAddress" theme="simple" method="post"
-		onsubmit="return checkEmailAllInfo()" >
+		onsubmit="return checkEmailAllInfo()">
 		<table>
 			<tr style="width: 400px;">
 				<td><label>电子邮箱：</label></td>
 				<td><input type="text" name="signUpFormByAccount.emailAddress"
 					id="email" onkeyup="checkMail()" onchange="checkMailIsOccupied()"
-					value="<s:property value='signUpFormByAccount.emailAddress'/>"/> <label
-					id="mail_error"></label><br/><a href="signUpByAccountWithMobilePhone.jsp">使用手机注册</a></td>
+					value="<s:property value='signUpFormByAccount.emailAddress'/>" /> <s:fielderror
+						name="mail" /><br />
+				<a href="signUpByAccountWithMobilePhone.jsp">使用手机注册</a></td>
 			</tr>
-			
+
 			<tr>
 				<td><label>密码：</label></td>
 				<td><input type="password" name="signUpFormByAccount.password"
 					id="password" onkeyup="checkPassword()" onchange="checkPassword()"
-					maxlength="20" /> <label id="password_error"></label></td>
+					maxlength="20" /> <s:fielderror name="password" /></td>
 			</tr>
 
 			<tr>
@@ -34,22 +35,26 @@
 				<td><input type="password"
 					name="signUpFormByAccount.passwordConfirm" id="password2"
 					onkeyup="checkPasswordConfirm()" onchange="checkPasswordConfirm()"
-					maxlength="20" /> <label id="passwordConfirm_error"></label></td>
+					maxlength="20" /> <s:fielderror name="passwordConfirm" /></td>
 			</tr>
 
 			<tr>
 				<td><label>姓名：</label></td>
 				<td><input type="text" name="signUpFormByAccount.name"
-					id="name" maxlength="20" onkeyup="checkName()" onchange="checkName()"  value="<s:property value='signUpFormByAccount.name'/>"
-					 /> <label id="name_error"></label></td>
+					id="name" maxlength="20" onkeyup="checkName()"
+					onchange="checkName()"
+					value="<s:property value='signUpFormByAccount.name'/>" /> <s:fielderror
+						name="name" /></td>
 			</tr>
 
 			<tr>
 				<td><label for="male">性别：</label></td>
 				<td><input type="radio" name="signUpFormByAccount.gender"
-					id="male" value="true" onchange="checkGender()"/>男<label for="female" ><input
-						type="radio" name="signUpFormByAccount.gender" id="female"
-						value="false" onchange="checkGender()"/>女</label><label id="gender_error"></label> <br /></td>
+					id="male" value="true" onchange="checkGender()" />男<label
+					for="female"><input type="radio"
+						name="signUpFormByAccount.gender" id="female" value="false"
+						onchange="checkGender()" />女</label>
+				<s:fielderror name="gender" /> <br /></td>
 			</tr>
 
 			<tr>
@@ -58,10 +63,11 @@
 					onchange="setDateRange()">
 
 				</select> 年 <select id="birth_month" name="signUpFormByAccount.month"
-					onchange="setDateRange()" >
+					onchange="setDateRange()">
 
-				</select> 月 <select id="birth_day" name="signUpFormByAccount.day" onchange="checkbirth()">
-				</select>日<label id="year_error"></label></td>
+				</select> 月 <select id="birth_day" name="signUpFormByAccount.day"
+					onchange="checkbirth()">
+				</select>日<s:fielderror name="year" /></td>
 			</tr>
 
 			<tr>

@@ -1,9 +1,5 @@
 package cn.wemasters.websystem.action;
 
-import java.util.Map;
-
-import org.apache.struts2.interceptor.SessionAware;
-
 import cn.wemasters.usersystem.application.service.interfaces.AccountManagementService;
 import cn.wemasters.usersystem.application.service.interfaces.UserManagementService;
 import cn.wemasters.usersystem.constant.ReturnCode;
@@ -11,9 +7,7 @@ import cn.wemasters.usersystem.utils.StringUtils;
 import cn.wemasters.usersystem.view.ResultMsg;
 import cn.wemasters.usersystem.view.SignUpFormByAccount;
 
-import com.opensymphony.xwork2.ActionSupport;
-
-public class SignUpAction extends ActionSupport implements SessionAware{
+public class SignUpAction extends BaseAction {
 
 	/**
 	 * 
@@ -21,7 +15,6 @@ public class SignUpAction extends ActionSupport implements SessionAware{
 	private static final long serialVersionUID = 2096320720296318968L;
 
 	private SignUpFormByAccount signUpFormByAccount;
-	private Map<String, Object> session;
 	private AccountManagementService accountManagementService;
 	private UserManagementService userManagementService;
 
@@ -66,60 +59,80 @@ public class SignUpAction extends ActionSupport implements SessionAware{
 
 	private void verfiyEmailAddress() {
 		if (signUpFormByAccount.getEmailAddress() == null) {
-			addFieldError("signUpFormByAccount.emailAddress", "1");
+			addFieldError(
+					"email",
+					"<font color='#FF0000'><img src='images/NO.png' style='height:18px; width:18px'>邮箱格式有误</font>");
 		} else if (!StringUtils.isEmailAddress(signUpFormByAccount
 				.getEmailAddress())) {
-			addFieldError("signUpFormByAccount.emailAddress", "1");
+			addFieldError(
+					"email",
+					"<font color='#FF0000'><img src='images/NO.png' style='height:18px; width:18px'>邮箱格式有误</font>");
 		} else if (accountManagementService
 				.verifyEmailAddressIsOccupied(signUpFormByAccount
 						.getEmailAddress())) {
-			addFieldError("signUpFormByAccount.emailAddress", "2");
+			addFieldError(
+					"email",
+					"<font color='#FF0000'><img src='images/NO.png' style='height:18px; width:18px'>账号已存在</font>");
 		}
 	}
 
 	private void verifyMobilePhoneNumber() {
 		if (signUpFormByAccount.getMobilePhoneNumber() == null) {
-			addFieldError("signUpFormByAccount.mobilePhoneNumber", "1");
+			addFieldError(
+					"mobile",
+					"<font color='#FF0000'><img src='images/NO.png' style='height:18px; width:18px'>手机号码有误</font>");
 		} else if (!StringUtils.isMobilePhoneNumber(signUpFormByAccount
 				.getMobilePhoneNumber())) {
-			addFieldError("signUpFormByAccount.mobilePhoneNumber", "1");
+			addFieldError(
+					"mobile",
+					"<font color='#FF0000'><img src='images/NO.png' style='height:18px; width:18px'>手机号码有误</font>");
 		} else if (accountManagementService
 				.verifyMobilePhoneNumberIsOccupied(signUpFormByAccount
 						.getMobilePhoneNumber())) {
-			addFieldError("signUpFormByAccount.mobilePhoneNumber", "2");
+			addFieldError(
+					"mobile",
+					"<font color='#FF0000'><img src='images/NO.png' style='height:18px; width:18px'>账号已存在</font>");
 		}
 	}
 
 	private void verifyPassword() {
-		if (signUpFormByAccount.getPassword() == null) {
-			addFieldError("signUpFormByAccount.password", "1");
-		} else if (signUpFormByAccount.getPassword().length() < 6
-				|| signUpFormByAccount.getPassword().length() > 20) {
-			addFieldError("signUpFormByAccount.password", "1");
+		if (signUpFormByAccount.getPassword() == null
+				|| signUpFormByAccount.getPassword().length() < 6) {
+			addFieldError(
+					"password",
+					"<font color='#FF0000'><img src='images/NO.png' style='height:18px; width:18px'>密码位数过短</font>");
+		} else if (signUpFormByAccount.getPassword().length() > 20) {
+			addFieldError(
+					"password",
+					"<font color='#FF0000'><img src='images/NO.png' style='height:18px; width:18px'>密码位数过长</font>");
 		}
 	}
 
 	private void verifyPasswordConfirm() {
-		if (signUpFormByAccount.getPasswordConfirm() == null) {
-			addFieldError("signUpFormByAccount.passwordConfirm", "1");
-		} else if (!signUpFormByAccount.getPasswordConfirm().equals(
-				signUpFormByAccount.getPassword())) {
-			addFieldError("signUpFormByAccount.passwordConfirm", "1");
+		if (signUpFormByAccount.getPasswordConfirm() == null
+				|| !signUpFormByAccount.getPasswordConfirm().equals(
+						signUpFormByAccount.getPassword())) {
+			addFieldError(
+					"passwordConfirm",
+					"<font color='#FF0000'><img src='images/NO.png' style='height:18px; width:18px'>密码不一致</font>");
 		}
 	}
 
 	private void verifyName() {
-		if (signUpFormByAccount.getName() == null) {
-			addFieldError("signUpFormByAccount.name", "1");
-		} else if (signUpFormByAccount.getPassword().length() < 2
+		if (signUpFormByAccount.getName() == null
+				|| signUpFormByAccount.getPassword().length() < 2
 				|| signUpFormByAccount.getPassword().length() > 20) {
-			addFieldError("signUpFormByAccount.name", "1");
+			addFieldError(
+					"name",
+					"<font color='#FF0000'><img src='images/NO.png' style='height:18px; width:18px'>名字需由2—20位中文、字母或数字组成！</font>");
 		}
 	}
 
 	private void verifyGender() {
 		if (signUpFormByAccount.getGender() == null) {
-			addFieldError("signUpFormByAccount.gender", "1");
+			addFieldError(
+					"gender",
+					"<font color='#FF0000'><img src='images/NO.png' style='height:18px; width:18px'>请选择性别</font>");
 		}
 	}
 
@@ -127,7 +140,9 @@ public class SignUpAction extends ActionSupport implements SessionAware{
 		if (signUpFormByAccount.getYear() == null
 				|| signUpFormByAccount.getMonth() == null
 				|| signUpFormByAccount.getDay() == null) {
-			addFieldError("signUpFormByAccount.year", "1");
+			addFieldError(
+					"signUpFormByAccount.year",
+					"<font color='#FF0000'><img src='images/NO.png' style='height:18px; width:18px'>请选择生日</font>");
 		}
 	}
 
@@ -144,13 +159,9 @@ public class SignUpAction extends ActionSupport implements SessionAware{
 		this.accountManagementService = accountManagementService;
 	}
 
-	public void setUserManagementService(UserManagementService userManagementService) {
+	public void setUserManagementService(
+			UserManagementService userManagementService) {
 		this.userManagementService = userManagementService;
-	}
-
-	@Override
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
 	}
 
 }

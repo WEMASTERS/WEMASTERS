@@ -1,18 +1,12 @@
 package cn.wemasters.websystem.action;
 
-import java.util.Map;
-
-import org.apache.struts2.interceptor.SessionAware;
-
 import cn.wemasters.usersystem.application.service.interfaces.AccountManagementService;
 import cn.wemasters.usersystem.constant.ReturnCode;
 import cn.wemasters.usersystem.utils.StringUtils;
 import cn.wemasters.usersystem.view.LoginForm;
 import cn.wemasters.usersystem.view.ResultMsg;
 
-import com.opensymphony.xwork2.ActionSupport;
-
-public class LoginAction extends ActionSupport implements SessionAware{
+public class LoginAction extends BaseAction {
 
 	/**
 	 * 
@@ -20,7 +14,6 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	private static final long serialVersionUID = -5438634539801724610L;
 
 	private LoginForm loginForm;
-	private Map<String, Object> session;
 	private AccountManagementService accountManagementService;
 
 	public String loginByAccount() {
@@ -60,11 +53,6 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	public void setAccountManagementService(
 			AccountManagementService accountManagementService) {
 		this.accountManagementService = accountManagementService;
-	}
-
-	@Override
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
 	}
 
 }
