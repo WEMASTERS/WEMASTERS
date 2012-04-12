@@ -11,7 +11,7 @@ public class UserFactory {
 		user.setName(signUpFormWithAccount.getName());
 		user.setGender(signUpFormWithAccount.getGender());
 		user.setIsDeleted(false);
-		user.setBirthday(signUpFormWithAccount.getYear() + "-"
+		user.setBirthdate(signUpFormWithAccount.getYear() + "-"
 				+ signUpFormWithAccount.getMonth() + "-" + signUpFormWithAccount.getDay());
 		Account account = new Account();
 		account.setEmailAddress(signUpFormWithAccount.getEmailAddress());

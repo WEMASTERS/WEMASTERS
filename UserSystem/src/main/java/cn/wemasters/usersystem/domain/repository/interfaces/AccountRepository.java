@@ -12,6 +12,8 @@ public interface AccountRepository extends BaseRepository<Account>{
 	
 	public int countAccountByMobilePhoneNumber(String mobilePhoneNumber);
 	
-	public void updateEncryptedPassword(Long id, String encryptedPassword);
+	public void updateEncryptedPassword(Account account);
+
+	public Account getAccountEncryptedPasswordById(Long id);
 
 }

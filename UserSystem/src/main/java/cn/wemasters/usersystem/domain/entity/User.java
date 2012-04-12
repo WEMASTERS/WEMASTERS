@@ -16,7 +16,7 @@ public class User {
 	private Long id;
 	private String name;
 	private Boolean gender;
-	private String birthday;
+	private String birthdate;
 	private Boolean isDeleted;
 	private Account account;
 
@@ -46,12 +46,12 @@ public class User {
 		this.gender = gender;
 	}
 
-	public String getBirthday() {
-		return birthday;
+	public String getBirthdate() {
+		return birthdate;
 	}
 
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
+	public void setBirthdate(String birthdate) {
+		this.birthdate = birthdate;
 	}
 
 	public Boolean getIsDeleted() {
