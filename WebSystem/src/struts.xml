@@ -27,6 +27,10 @@
 		<action name="getUserByAccount" class="userAction" method="getUserByAccount">
 			<result name="success">/main.jsp</result>
 		</action>
+		<action name="changePwd" class="changePwdAction" method="changePwd">
+			<result name="success">/main.jsp</result>
+			<result name="input">/changePwd.jsp</result>
+		</action>
 	</package>
 	<package name="wemasters_websystem_json" extends="json-default">
 		<action name="checkEmailIsOccupied" class="checkAccountIsOccupiedAction"

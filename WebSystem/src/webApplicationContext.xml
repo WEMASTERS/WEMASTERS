@@ -12,6 +12,8 @@
 		autowire="byName" />
 	<bean id="userAction" class="cn.wemasters.websystem.action.UserAction"
 		autowire="byName" />
+	<bean id="changePwdAction" class="cn.wemasters.websystem.action.ChangePwdAction"
+		autowire="byName" />
 	<bean id="checkAccountIsOccupiedAction"
 		class="cn.wemasters.websystem.ajax.action.CheckAccountIsOccupiedAction" autowire="byName"/>
 		

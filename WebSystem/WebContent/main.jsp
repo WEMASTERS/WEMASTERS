@@ -9,7 +9,8 @@
 </head>
 <body>
 
-      <s:property value="#session.user.name"/>
+      你好，<s:property value="#session.user.name"/>，欢迎登陆！
+      你可以<a href="changePwd.jsp">修改密码</a>
 
 </body>
 </html>
