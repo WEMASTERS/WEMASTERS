@@ -26,16 +26,17 @@ public class UserManagementServiceImpl implements UserManagementService{
 	@Override
 	public ResultMsg signUpUserByAccount(
 			SignUpFormByAccount signUpFormByAccount) {
-		try {
-			User user = UserFactory
-					.purchaseUserBySignUpFormWithAccount(signUpFormByAccount);
-			accountRepository.save(user.getAccount());
-			userRepository.save(user);
-			return ResultMsgUtils.createSuccess(user.getAccount().getId());
-		} catch (Exception e) {
-			return ResultMsgUtils
-					.createResultMsg(ReturnCode.INTERNAL_SERVER_ERROR);
-		}
+//		try {
+//			User user = UserFactory
+//					.purchaseUserBySignUpFormWithAccount(signUpFormByAccount);
+//			accountRepository.save(user.getAccount());
+//			userRepository.save(user);
+//			return ResultMsgUtils.createSuccess(user.getAccount().getId());
+//		} catch (Exception e) {
+//			return ResultMsgUtils
+//					.createResultMsg(ReturnCode.INTERNAL_SERVER_ERROR);
+//		}
+		return null;
 	}
 	
 	@Override

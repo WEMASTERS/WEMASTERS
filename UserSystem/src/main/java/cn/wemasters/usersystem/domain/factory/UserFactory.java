@@ -13,11 +13,6 @@ public class UserFactory {
 		user.setIsDeleted(false);
 		user.setBirthdate(signUpFormWithAccount.getYear() + "-"
 				+ signUpFormWithAccount.getMonth() + "-" + signUpFormWithAccount.getDay());
-		Account account = new Account();
-		account.setEmailAddress(signUpFormWithAccount.getEmailAddress());
-		account.setMobilePhoneNumber(signUpFormWithAccount.getMobilePhoneNumber());
-		account.setPassword(signUpFormWithAccount.getPassword());
-		user.setAccount(account);
 		return user;
 	}
 

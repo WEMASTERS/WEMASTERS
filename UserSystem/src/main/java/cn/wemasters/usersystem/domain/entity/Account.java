@@ -1,9 +1,12 @@
 package cn.wemasters.usersystem.domain.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import cn.wemasters.usersystem.utils.EncryptionUtils;
@@ -11,11 +14,12 @@ import cn.wemasters.usersystem.utils.EncryptionUtils;
 @Entity
 @Table(name = "WM_US_ACCOUNT")
 public class Account {
-
+	
 	private Long id;
 	private String emailAddress;
 	private String mobilePhoneNumber;
 	private String encryptedPassword;
+	private User user;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,4 +66,15 @@ public class Account {
 			return false;
 		}
 	}
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USER_ID")
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 }
